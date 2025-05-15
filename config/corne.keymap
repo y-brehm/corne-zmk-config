@@ -67,12 +67,5 @@
         extra_3 { status = "reserved"; };
     };
 
-    conditional_layers {
-        compatible = "zmk,conditional-layers";
-
-        BT-Settings {
-            if-layers = <2 1>;
-            then-layer = <3>;
-        };
-    };
+    conditional_layers { compatible = "zmk,conditional-layers"; };
 };
