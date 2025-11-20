@@ -51,10 +51,10 @@
 
             display-name = "Layer 1";
             bindings = <
-&kp DE_CARET  &kp DE_N1       &kp DE_N2       &kp DE_N3     &kp DE_N4       &kp DE_N5          &kp DE_N6  &kp DE_N7  &kp DE_N8  &kp DE_N9  &kp DE_N0       &kp DE_ESZETT
-&msc SCRL_UP  &msc SCRL_DOWN  &mmv MOVE_LEFT  &mmv MOVE_UP  &mmv MOVE_DOWN  &mmv MOVE_RIGHT    &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT  &msc SCRL_LEFT  &msc SCRL_RIGHT
-&kp F1        &kp F2          &kp F3          &kp F4        &kp F5          &kp F6             &kp F7     &kp F8     &kp F9     &kp F10    &trans          &trans
-                                              &trans        &mkp RCLK       &mkp LCLK          &trans     &kp F11    &kp F12
+&kp DE_CARET  &kp DE_N1  &kp DE_N2       &kp DE_N3     &kp DE_N4       &kp DE_N5          &kp DE_N6   &kp DE_N7  &kp DE_N8  &kp DE_N9  &kp DE_N0      &kp DE_ESZETT
+&trans        &trans     &mmv MOVE_LEFT  &mmv MOVE_UP  &mmv MOVE_DOWN  &mmv MOVE_RIGHT    &kp LEFT    &kp DOWN   &kp UP     &kp RIGHT  &kp PAGE_DOWN  &kp PAGE_UP
+&kp F1        &kp F2     &kp F3          &kp F4        &kp F5          &kp F6             &kp F7      &kp F8     &kp F9     &kp F10    &trans         &trans
+                                         &trans        &mkp RCLK       &mkp LCLK          &kp DELETE  &kp F11    &kp F12
             >;
         };
 
@@ -69,7 +69,7 @@
             bindings = <
 &kp DE_EXCL  &kp DE_SECTION  &kp DE_DOLLAR  &kp DE_PERCENT    &kp DE_AMPERSAND     &kp DE_DOUBLE_QUOTES    &kp DE_SLASH      &kp DE_LEFT_PARENTHESIS  &kp DE_RIGHT_PARENTHESIS  &kp DE_PIPE  &kp DE_EQUAL  &kp DE_QUESTION
 &trans       &trans          &trans         &kp DE_LESS_THAN  &kp DE_GREATER_THAN  &kp DE_SQT              &kp DE_BACKSLASH  &kp DE_LEFT_BRACKET      &kp DE_RIGHT_BRACKET      &kp DE_PLUS  &kp DE_STAR   &kp DE_HASH
-&trans       &bt BT_PRV      &bt BT_NXT     &kp GRAVE         &kp DE_ACUTE         &kp DE_AT               &kp DE_TILDE      &kp DE_LEFT_BRACE        &kp DE_RIGHT_BRACE        &trans       &trans        &bt BT_CLR
+&trans       &bt BT_PRV      &bt BT_NXT     &kp DE_GRAVE      &kp DE_ACUTE         &kp DE_AT               &kp DE_TILDE      &kp DE_LEFT_BRACE        &kp DE_RIGHT_BRACE        &trans       &trans        &bt BT_CLR
                                             &trans            &trans               &trans                  &trans            &trans                   &trans
             >;
         };
