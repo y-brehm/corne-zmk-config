@@ -73,7 +73,15 @@
             >;
         };
 
-        extra_1 { status = "reserved"; };
+        macos_layer {
+            display-name = "macOS";
+            bindings = <
+&kp NON_US_BSLH  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans           &trans  &trans  &trans  &kp GRAVE  &trans    &trans  &kp LS(GRAVE)  &trans  &kp LA(GRAVE)  &trans  &trans
+&trans           &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+                                 &trans  &trans  &trans    &trans  &trans  &trans
+            >;
+        };
 
         extra_2 { status = "reserved"; };
 
