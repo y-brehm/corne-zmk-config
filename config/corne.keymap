@@ -22,6 +22,15 @@
         };
     };
 
+    combos {
+        compatible = "zmk,combos";
+
+        toggle_macOS {
+            bindings = <&tog 3>;
+            key-positions = <36 37 40 41>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -76,10 +85,10 @@
         macos_layer {
             display-name = "macOS";
             bindings = <
-&kp NON_US_BSLH  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&kp NON_US_BSLH  &trans  &trans  &trans  &trans     &trans    &trans  &trans         &trans  &trans         &trans  &trans
 &trans           &trans  &trans  &trans  &kp GRAVE  &trans    &trans  &kp LS(GRAVE)  &trans  &kp LA(GRAVE)  &trans  &trans
-&trans           &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-                                 &trans  &trans  &trans    &trans  &trans  &trans
+&trans           &trans  &trans  &trans  &trans     &trans    &trans  &trans         &trans  &trans         &trans  &trans
+                                 &trans  &trans     &trans    &trans  &trans         &trans
             >;
         };
 
