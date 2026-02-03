@@ -100,10 +100,10 @@
         macos_layer1 {
             display-name = "macL1";
             bindings = <
-&tap_hold LS(NON_US_BSLH) NON_US_BSLH  &kp DE_N1     &kp DE_N2     &kp DE_N3     &kp DE_N4     &kp DE_N5     &kp DE_N6  &kp DE_N7  &kp DE_N8  &kp DE_N9  &kp DE_N0  &kp DE_ESZETT
-&bt BT_NXT                             &kp LG(DE_A)  &kp LG(DE_X)  &kp LG(DE_C)  &kp LG(DE_V)  &trans        &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT  &trans     &kp PAGE_UP
-&kp LEFT_SHIFT                         &kp F1        &kp F2        &kp F3        &kp F4        &kp F5        &kp F6     &kp F7     &kp F8     &kp F9     &kp F10    &kp PAGE_DOWN
-                                                                   &trans        &trans        &kp DELETE    &trans     &trans     &trans
+&tap_hold LS(NON_US_BSLH) NON_US_BSLH  &kp DE_N1     &kp DE_N2  &kp DE_N3     &kp DE_N4     &kp DE_N5           &kp DE_N6  &kp DE_N7  &kp DE_N8  &kp DE_N9  &kp DE_N0  &kp DE_ESZETT
+&bt BT_NXT                             &kp LG(DE_A)  &trans     &kp LG(DE_C)  &kp LG(DE_V)  &kp LG(LA(DE_V))    &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT  &trans     &kp PAGE_UP
+&kp LEFT_SHIFT                         &kp F1        &kp F2     &kp F3        &kp F4        &kp F5              &kp F6     &kp F7     &kp F8     &kp F9     &kp F10    &kp PAGE_DOWN
+                                                                &trans        &trans        &kp DELETE          &trans     &trans     &trans
             >;
         };
 
