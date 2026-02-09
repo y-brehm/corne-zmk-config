@@ -80,10 +80,10 @@
 
             display-name = "Layer 2";
             bindings = <
-&kp DE_EXCL     &kp DE_AMPERSAND  &kp DE_LEFT_BRACE  &kp DE_LEFT_BRACKET  &kp DE_LEFT_PARENTHESIS  &kp DE_SLASH     &kp DE_BACKSLASH      &kp DE_RIGHT_PARENTHESIS  &kp DE_RIGHT_BRACKET  &kp DE_RIGHT_BRACE  &kp DE_EQUAL  &kp DE_QUESTION
-&kp ESCAPE      &kp LEFT_CONTROL  &kp LEFT_GUI       &kp LEFT_ALT         &kp DE_LESS_THAN         &kp DE_SQT       &kp DE_DOUBLE_QUOTES  &kp DE_GREATER_THAN       &kp DE_PERCENT        &kp DE_PIPE         &kp DE_STAR   &kp DE_HASH
-&kp LEFT_SHIFT  &kp DE_SECTION    &trans             &kp DE_AT_SIGN       &kp DE_GRAVE             &kp DE_DOLLAR    &kp DE_EURO           &kp DE_ACUTE              &kp DE_TILDE          &trans              &trans        &trans
-                                                     &trans               &trans                   &trans           &trans                &trans                    &trans
+&kp DE_EXCL     &kp DE_AMPERSAND  &kp DE_SECTION  &tap_hold DE_EURO DE_DOLLAR  &kp DE_PRCNT         &kp DE_SLASH    &kp DE_BACKSLASH      &kp DE_LEFT_PARENTHESIS  &kp DE_RIGHT_PARENTHESIS  &kp DE_PIPE   &kp DE_EQUAL  &kp DE_QUESTION
+&kp ESCAPE      &kp DE_AT         &kp DE_GRAVE    &kp DE_LESS_THAN             &kp DE_GREATER_THAN  &kp DE_SQT      &kp DE_DOUBLE_QUOTES  &kp DE_LEFT_BRACKET      &kp DE_RIGHT_BRACKET      &kp DE_TILDE  &kp DE_STAR   &kp DE_HASH
+&kp LEFT_SHIFT  &trans            &trans          &trans                       &trans               &trans          &kp DE_ACUTE          &kp DE_LEFT_BRACE        &kp DE_RIGHT_BRACE        &trans        &trans        &trans
+                                                  &trans                       &trans               &trans          &trans                &trans                   &trans
             >;
         };
 
