@@ -90,10 +90,10 @@
         macos_flag {
             display-name = "macOS";
             bindings = <
-&trans  &trans  &trans                   &trans                       &trans                                   &trans    &trans  &trans  &trans                       &trans                    &trans  &trans
-&trans  &trans  &tap_hold LEFT_ALT DE_S  &tap_hold LEFT_COMMAND DE_D  &tap_hold LC(LA(LS(LEFT_COMMAND))) DE_F  &trans    &trans  &trans  &tap_hold LEFT_COMMAND DE_K  &tap_hold RIGHT_ALT DE_L  &trans  &trans
-&trans  &trans  &trans                   &trans                       &trans                                   &trans    &trans  &trans  &trans                       &trans                    &trans  &trans
-                                         &trans                       &trans                                   &trans    &trans  &trans  &trans
+&trans  &trans  &trans                   &trans                       &trans                               &trans    &trans  &trans  &trans                       &trans                    &trans  &trans
+&trans  &trans  &tap_hold LEFT_ALT DE_S  &tap_hold LEFT_COMMAND DE_D  &tap_hold LC(LA(LEFT_COMMAND)) DE_F  &trans    &trans  &trans  &tap_hold LEFT_COMMAND DE_K  &tap_hold RIGHT_ALT DE_L  &trans  &trans
+&trans  &trans  &trans                   &trans                       &trans                               &trans    &trans  &trans  &trans                       &trans                    &trans  &trans
+                                         &trans                       &trans                               &trans    &trans  &trans  &trans
             >;
         };
 
