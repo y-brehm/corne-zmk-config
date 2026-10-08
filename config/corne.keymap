@@ -9,8 +9,51 @@
 #include <dt-bindings/zmk/keys.h>
 #include "keys_de.h"
 
+#define TRANS_ROW &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+#define TRANS_ALL TRANS_ROW TRANS_ROW TRANS_ROW &trans &trans &trans &trans &trans &trans
+
 / {
+    macros {
+        // Dead key + space = literal character
+        grave_lit: grave_lit {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp DE_GRAVE &kp SPACE>;
+        };
+
+        caret_lit: caret_lit {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp DE_CARET &kp SPACE>;
+        };
+
+        caret_lit_mac: caret_lit_mac {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp NON_US_BSLH &kp SPACE>;
+        };
+    };
+
     behaviors {
+        // Hold: kp <param1>, tap: literal ^ (param2 unused, pass 0)
+        caret_hold: caret_hold {
+            compatible = "zmk,behavior-hold-tap";
+            bindings = <&kp>, <&caret_lit>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <300>;
+            flavor = "tap-preferred";
+        };
+
+        caret_hold_mac: caret_hold_mac {
+            compatible = "zmk,behavior-hold-tap";
+            bindings = <&kp>, <&caret_lit_mac>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <300>;
+            flavor = "tap-preferred";
+        };
+
         tap_hold: tap_hold {
             compatible = "zmk,behavior-hold-tap";
             label = "TAP_HOLD";
@@ -40,31 +83,32 @@
         compatible = "zmk,keymap";
 
         base {
-            // -----------------------------------------------------------------------------------------
-            // |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
-            // | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-            // | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
-            //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
+            // tap/hold, blank = transparent
+            // | TAB  |   Q   |   W   |   E   |   R   |  T  |   |  Z   |  U/Ü  |   I   |  O/Ö  |   P   | ENTER |
+            // | ESC  | A/CTL | S/GUI | D/ALT | F/GUI |  G  |   |  H   |   J   | K/AGR | L/GUI | +/CTL |   Ä   |
+            // | SHFT |   Y   |   X   |   C   |   V   |  B  |   |  N   |   M   |   ,   |   .   |   -   | SHFT  |
+            //                        |  L2   |  L1   | SPC |   | BKSP |  L1   |  L2   |
+            // L1/L2 go through trigger layers 6-9 so switching thumbs mid-hold keeps the layer
 
             display-name = "Base";
             bindings = <
 &kp TAB    &kp DE_Q              &kp DE_W                     &kp DE_E                 &kp DE_R                 &kp DE_T     &kp DE_Z       &tap_hold DE_U_UMLAUT DE_U  &kp DE_I                  &tap_hold DE_O_UMLAUT DE_O  &kp DE_P                         &kp ENTER
 &kp ESC    &tap_hold LCTRL DE_A  &tap_hold LEFT_COMMAND DE_S  &tap_hold LEFT_ALT DE_D  &tap_hold LEFT_GUI DE_F  &kp DE_G     &kp DE_H       &kp DE_J                    &tap_hold RIGHT_ALT DE_K  &tap_hold LEFT_GUI DE_L     &tap_hold RIGHT_CONTROL DE_PLUS  &kp DE_A_UMLAUT
 &kp LSHFT  &kp DE_Y              &kp DE_X                     &kp DE_C                 &kp DE_V                 &kp DE_B     &kp DE_N       &kp DE_M                    &kp DE_COMMA              &kp DE_DOT                  &kp DE_MINUS                     &kp RIGHT_SHIFT
-                                                              &mo 2                    &mo 1                    &kp SPACE    &kp BACKSPACE  &mo 1                       &mo 2
+                                                              &mo 8                    &mo 6                    &kp SPACE    &kp BACKSPACE  &mo 7                       &mo 9
             >;
         };
 
         layer1 {
-            // -----------------------------------------------------------------------------------------
-            // |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
-            // | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
-            // | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
-            //                    | GUI |     | SPC |   | ENT |     | ALT |
+            // | ^/°  |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  |  ß   |
+            // |BT_NXT| C-A | C-X | C-C | C-V |     |   |  ←  |  ↓  |  ↑  |  →  |     | PGUP |
+            // | SHFT | F1  | F2  | F3  | F4  | F5  |   | F6  | F7  | F8  | F9  | F10 | PGDN |
+            //                    |     |     | DEL |   |     |     |     |
+            // ^ is sent as literal (dead key + space)
 
             display-name = "Layer 1";
             bindings = <
-&tap_hold DE_DEGREE DE_CARET  &kp DE_N1     &kp DE_N2     &kp DE_N3     &kp DE_N4     &kp DE_N5     &kp DE_N6  &kp DE_N7  &kp DE_N8  &kp DE_N9  &kp DE_N0  &kp DE_ESZETT
+&caret_hold DE_DEGREE 0        &kp DE_N1     &kp DE_N2     &kp DE_N3     &kp DE_N4     &kp DE_N5     &kp DE_N6  &kp DE_N7  &kp DE_N8  &kp DE_N9  &kp DE_N0  &kp DE_ESZETT
 &bt BT_NXT                    &kp LC(DE_A)  &kp LC(DE_X)  &kp LC(DE_C)  &kp LC(DE_V)  &trans        &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT  &trans     &kp PAGE_UP
 &kp LEFT_SHIFT                &kp F1        &kp F2        &kp F3        &kp F4        &kp F5        &kp F6     &kp F7     &kp F8     &kp F9     &kp F10    &kp PAGE_DOWN
                                                           &trans        &trans        &kp DELETE    &trans     &trans     &trans
@@ -72,22 +116,23 @@
         };
 
         layer2 {
-            // -----------------------------------------------------------------------------------------
-            // |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
-            // | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-            // | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-            //                    | GUI |     | SPC |   | ENT |     | ALT |
+            // |  !   |  &  |  §  | $/€ |  %  |  \  |   |  /  |  (  |  )  | "|" |  =  |  ?   |
+            // | ESC  |  @  |  `  |  <  |  >  |  '  |   |  "  |  [  |  ]  |  ~  |  #  | HOME |
+            // | SHFT |     |     |     |     |     |   |  ´  |  {  |  }  |     |     | END  |
+            //                    |     |     |     |   |     |     |     |
+            // ` is sent as literal (dead key + space), ´ stays a dead key
 
             display-name = "Layer 2";
             bindings = <
 &kp DE_EXCL     &kp DE_AMPERSAND  &kp DE_SECTION  &tap_hold DE_EURO DE_DOLLAR  &kp DE_PRCNT         &kp DE_BACKSLASH    &kp DE_SLASH          &kp DE_LEFT_PARENTHESIS  &kp DE_RIGHT_PARENTHESIS  &kp DE_PIPE   &kp DE_EQUAL  &kp DE_QUESTION
-&kp ESCAPE      &kp DE_AT         &kp DE_GRAVE    &kp DE_LESS_THAN             &kp DE_GREATER_THAN  &kp DE_SQT          &kp DE_DOUBLE_QUOTES  &kp DE_LEFT_BRACKET      &kp DE_RIGHT_BRACKET      &kp DE_TILDE  &kp DE_HASH   &kp HOME
+&kp ESCAPE      &kp DE_AT         &grave_lit       &kp DE_LESS_THAN             &kp DE_GREATER_THAN  &kp DE_SQT          &kp DE_DOUBLE_QUOTES  &kp DE_LEFT_BRACKET      &kp DE_RIGHT_BRACKET      &kp DE_TILDE  &kp DE_HASH   &kp HOME
 &kp LEFT_SHIFT  &trans            &trans          &trans                       &trans               &trans              &kp DE_ACUTE          &kp DE_LEFT_BRACE        &kp DE_RIGHT_BRACE        &trans        &trans        &kp END
                                                   &trans                       &trans               &trans              &trans                &trans                   &trans
             >;
         };
 
         macos_flag {
+            // Toggled by combo (both L1+L2 thumbs). Mac mods: S/ALT, D/CMD, F/HYPER(ctl+alt+cmd), K/CMD, L/ALT
             display-name = "macOS";
             bindings = <
 &trans  &trans  &trans                   &trans                       &trans                               &trans    &trans  &trans  &trans                       &trans                    &trans  &trans
@@ -98,9 +143,10 @@
         };
 
         macos_layer1 {
+            // Active when L1 + macOS: like L1 but CMD shortcuts, CMD+ALT+V on G, mac ^ key
             display-name = "macL1";
             bindings = <
-&tap_hold LS(NON_US_BSLH) NON_US_BSLH  &kp DE_N1     &kp DE_N2     &kp DE_N3     &kp DE_N4     &kp DE_N5           &kp DE_N6  &kp DE_N7  &kp DE_N8  &kp DE_N9  &kp DE_N0  &kp DE_ESZETT
+&caret_hold_mac LS(NON_US_BSLH) 0         &kp DE_N1     &kp DE_N2     &kp DE_N3     &kp DE_N4     &kp DE_N5           &kp DE_N6  &kp DE_N7  &kp DE_N8  &kp DE_N9  &kp DE_N0  &kp DE_ESZETT
 &bt BT_NXT                             &kp LG(DE_A)  &kp LG(DE_X)  &kp LG(DE_C)  &kp LG(DE_V)  &kp LG(LA(DE_V))    &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT  &trans     &kp PAGE_UP
 &kp LEFT_SHIFT                         &kp F1        &kp F2        &kp F3        &kp F4        &kp F5              &kp F6     &kp F7     &kp F8     &kp F9     &kp F10    &kp PAGE_DOWN
                                                                    &trans        &trans        &kp DELETE          &trans     &trans     &trans
@@ -108,18 +154,32 @@
         };
 
         macos_layer2 {
+            // Active when L2 + macOS: like L2 but mac keycodes for | < >
             display-name = "macL2";
             bindings = <
 &kp DE_EXCL     &kp DE_AMPERSAND  &kp DE_SECTION  &tap_hold DE_EURO DE_DOLLAR  &kp DE_PRCNT   &kp DE_BACKSLASH    &kp DE_SLASH          &kp DE_LEFT_PARENTHESIS  &kp DE_RIGHT_PARENTHESIS  &kp LA(GRAVE)  &kp DE_EQUAL  &kp DE_QUESTION
-&kp ESCAPE      &kp DE_AT         &kp DE_GRAVE    &kp GRAVE                    &kp LS(GRAVE)  &kp DE_SQT          &kp DE_DOUBLE_QUOTES  &kp DE_LEFT_BRACKET      &kp DE_RIGHT_BRACKET      &kp DE_TILDE   &kp DE_HASH   &trans
+&kp ESCAPE      &kp DE_AT         &grave_lit       &kp GRAVE                    &kp LS(GRAVE)  &kp DE_SQT          &kp DE_DOUBLE_QUOTES  &kp DE_LEFT_BRACKET      &kp DE_RIGHT_BRACKET      &kp DE_TILDE   &kp DE_HASH   &trans
 &kp LEFT_SHIFT  &trans            &trans          &trans                       &trans         &trans              &kp DE_ACUTE          &kp DE_LEFT_BRACE        &kp DE_RIGHT_BRACE        &trans         &trans        &trans
                                                   &trans                       &trans         &trans              &trans                &trans                   &trans
             >;
         };
+
+        // Empty trigger layers: one per thumb key, so layer 1/2 stays active while
+        // either thumb is held (see conditional_layers). &mo alone has no ref-counting.
+        l1_left  { display-name = "L1L"; bindings = <TRANS_ALL>; };
+        l1_right { display-name = "L1R"; bindings = <TRANS_ALL>; };
+        l2_left  { display-name = "L2L"; bindings = <TRANS_ALL>; };
+        l2_right { display-name = "L2R"; bindings = <TRANS_ALL>; };
     };
 
     conditional_layers {
         compatible = "zmk,conditional-layers";
+
+        // Multiple conditionals with the same then-layer are OR'd.
+        layer1_from_left  { if-layers = <6>; then-layer = <1>; };
+        layer1_from_right { if-layers = <7>; then-layer = <1>; };
+        layer2_from_left  { if-layers = <8>; then-layer = <2>; };
+        layer2_from_right { if-layers = <9>; then-layer = <2>; };
 
         macos_layer1_conditional {
             if-layers = <1 3>;
