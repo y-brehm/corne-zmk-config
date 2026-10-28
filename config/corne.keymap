@@ -9,9 +9,6 @@
 #include <dt-bindings/zmk/keys.h>
 #include "keys_de.h"
 
-#define TRANS_ROW &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-#define TRANS_ALL TRANS_ROW TRANS_ROW TRANS_ROW &trans &trans &trans &trans &trans &trans
-
 / {
     macros {
         // Dead key + space = literal character
@@ -166,10 +163,45 @@
 
         // Empty trigger layers: one per thumb key, so layer 1/2 stays active while
         // either thumb is held (see conditional_layers). &mo alone has no ref-counting.
-        l1_left  { display-name = "L1L"; bindings = <TRANS_ALL>; };
-        l1_right { display-name = "L1R"; bindings = <TRANS_ALL>; };
-        l2_left  { display-name = "L2L"; bindings = <TRANS_ALL>; };
-        l2_right { display-name = "L2R"; bindings = <TRANS_ALL>; };
+        l1_left {
+            display-name = "L1L";
+            bindings = <
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+                                    &trans &trans &trans &trans &trans &trans
+            >;
+        };
+
+        l1_right {
+            display-name = "L1R";
+            bindings = <
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+                                    &trans &trans &trans &trans &trans &trans
+            >;
+        };
+
+        l2_left {
+            display-name = "L2L";
+            bindings = <
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+                                    &trans &trans &trans &trans &trans &trans
+            >;
+        };
+
+        l2_right {
+            display-name = "L2R";
+            bindings = <
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+                                    &trans &trans &trans &trans &trans &trans
+            >;
+        };
     };
 
     conditional_layers {
